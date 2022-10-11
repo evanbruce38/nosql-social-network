@@ -2,7 +2,7 @@ const { Thought, User } = require('../models');
 
 const thoughtController = {
     getAllThoughts(req, res) {
-        thoughtController.find()
+        Thought.find()
         .select('-__v')
         .sort({ _id: -1 })
         .then(dbThoughtData => res.json(dbThoughtData))
@@ -67,7 +67,7 @@ const thoughtController = {
         Thought.findOneAndDelete({ _id: params.thoughtId })
             .then(dbThoughtData => {
                 if (!dbThoughtData) {
-                    res,status(404).json({ message: 'No thought found with this id! '});
+                    res.status(404).json({ message: 'No thought found with this id! '});
                     return;
                 }
                 res.json(dbThoughtData);
